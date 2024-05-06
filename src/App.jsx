@@ -4,6 +4,8 @@ import ErrorPage from './pages/error-page.jsx';
 import Contact from './pages/contact.jsx';
 
 import Root from './pages/root.jsx';
+import Login from './pages/login.jsx';
+import { Outlet } from "react-router-dom";
 
 import {
   createBrowserRouter,
@@ -13,12 +15,22 @@ import {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root/>,
+    element: <Outlet />,
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "contacts/:contactId",
-        element: <Contact />,
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/home",
+        element: <Root />,   
+        children: [
+          {
+            path: "prof",
+            element: <Contact />,
+          },
+        ],             
       },
     ],
   },

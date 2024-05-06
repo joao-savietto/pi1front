@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { setTokens } from '../slices/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
-const useAxios = () => {
+export default function useAxios() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const currAccess = useSelector((state) => state.auth.accessToken);
@@ -62,5 +62,3 @@ const useAxios = () => {
 
   return baseInstance;
 };
-
-export default useAxios;

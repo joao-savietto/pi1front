@@ -1,8 +1,21 @@
 import { Outlet, Link } from "react-router-dom";
 import books from "../assets/books.jpg"
-
+import { Mortarboard } from "react-bootstrap-icons";
+import { Person } from "react-bootstrap-icons";
+import { useDispatch, useSelector } from "react-redux";
+import { setTokens } from "../services/slices/authSlice";
+import { useEffect } from "react";
 
 export default function Root() {
+
+    const dispatch = useDispatch();
+    // const accessToken = useSelector(state => state.auth.accessToken);
+    // const refreshToken = useSelector(state => state.auth.refreshToken);
+
+    // useEffect(() => {
+    //   console.log(accessToken, refreshToken)
+    // }, [accessToken]);
+
     return (
       <div className="d-flex flex-row w-100 h-100">
         <div
@@ -10,9 +23,17 @@ export default function Root() {
         style={{ width: "222px" }}
         >
           <img src={books} alt="Book Cover" />
-          <div className="d-flex flex-column align-baseline w-100 ms-5">
-            <p className="text-white fs-6 fw-bold mb-2">Teste 1</p>
-            <p className="text-white fs-6 fw-bold mb-2">Teste 2</p>
+          <div className="d-flex flex-column align-baseline w-100 ms-4">
+            <Link to={'/home/prof'} className="text-white fs-6 fw-bold mb-2 text-decoration-none">              
+              <Mortarboard className="me-1"/>                            
+              Salas de Aula
+            </Link>            
+          </div>
+          <div className="d-flex align-bottom w-100 h-100 flex-column-reverse ms-3">
+          <Link to={'/'} className="text-white fs-6 fw-bold mb-2 text-decoration-none">              
+              <Person className="me-1"/>                            
+              Fulano de Tal
+            </Link>
           </div>
         </div>        
         <div className="w-100">
