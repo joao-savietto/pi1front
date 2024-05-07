@@ -14,16 +14,21 @@ export default function useAxios() {
 
   const clearStorageAndNavigate = (navigate) => {
     localStorage.clear();
-    navigate('/');
+    navigate('/login');
   };
 
   useEffect(() => {
+    if (currRefresh === null){
+      return
+    }
     const refreshToken = async () => {
       const refresh_token = currRefresh;
       if (!refresh_token) {
         clearStorageAndNavigate(navigate);
       }
-      const { data } = await baseInstance.post("users/refresh?token=" + refresh_token);
+      console.log('refreshing token');
+      console.log('refresh token is', refresh_token);
+      const { data } = await baseInstance.post("api/token/refresh?token=" + refresh_token);
       dispatch(setTokens({ accessToken: data.access_token, refreshToken: refresh_token }));
       return data.access_token;
     };

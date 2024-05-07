@@ -41,11 +41,10 @@ export default function Root() {
             className="d-flex flex-column align-content-center w-100 bg-dark-subtle mb-2 bottom-shaddow "
             style={{ maxHeight: "80px"}}
           >
-            <p class="fs-5 mb-1 ms-3 mt-2" >Sistema de Controle de Ocorrências</p>
-            <p class="fs-7 fw-light ms-3 pb-2">Módulo do professor</p>
+            <p className="fs-5 mb-1 ms-3 mt-2" >Sistema de Controle de Ocorrências</p>
+            <p className="fs-7 fw-light ms-3 pb-2">Módulo do professor</p>
           </div>
           <div className=" position-relative w-auto ms-3">            
-            <p>Teste</p>
             <Outlet />
           </div>
         </div>
