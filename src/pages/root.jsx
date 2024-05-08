@@ -9,12 +9,13 @@ import { useEffect } from "react";
 export default function Root() {
 
     const dispatch = useDispatch();
-    // const accessToken = useSelector(state => state.auth.accessToken);
-    // const refreshToken = useSelector(state => state.auth.refreshToken);
+    const accessToken = useSelector(state => state.auth.accessToken);
+    const refreshToken = useSelector(state => state.auth.refreshToken);
+    const userProfile = useSelector(state => state.profile);
 
-    // useEffect(() => {
-    //   console.log(accessToken, refreshToken)
-    // }, [accessToken]);
+    useEffect(() => {
+      
+    }, [accessToken]);
 
     return (
       <div className="d-flex flex-row w-100 h-100">

@@ -7,6 +7,9 @@ import Root from './pages/root.jsx';
 import Login from './pages/login.jsx';
 import { Outlet } from "react-router-dom";
 
+import ProfessorHome from './pages/prof-home.jsx';
+
+
 import {
   createBrowserRouter,
   RouterProvider,
@@ -32,7 +35,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: "prof",
-            element: <Contact />,
+            element: <ProfessorHome />,
           },
         ],             
       },
