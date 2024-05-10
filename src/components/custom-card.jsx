@@ -3,7 +3,7 @@ import { Card, Row, Col, Button } from "react-bootstrap";
 
 export default function CustomCard({text, subtext, buttonClick, buttonTitle}){
   return (
-    <Card className=" w-75 align-self-center">
+    <Card className=" w-75 align-self-center mt-2">
       <Card.Body>
         <Row className="align-items-center">
           <Col xs={8} md={9}>

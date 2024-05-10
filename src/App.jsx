@@ -1,13 +1,13 @@
 import { useState } from 'react'
 
 import ErrorPage from './pages/error-page.jsx';
-import Contact from './pages/contact.jsx';
 
 import Root from './pages/root.jsx';
 import Login from './pages/login.jsx';
 import { Outlet } from "react-router-dom";
 
-import ProfessorHome from './pages/prof-home.jsx';
+import ClassroomList from './pages/classroom-list.jsx';
+import StudentList from './pages/student-list.jsx';
 
 
 import {
@@ -35,8 +35,12 @@ const router = createBrowserRouter([
         children: [
           {
             path: "prof",
-            element: <ProfessorHome />,
+            element: <ClassroomList />,
           },
+          {
+            path: "prof/students",
+            element: <StudentList />,
+          },          
         ],             
       },
     ],

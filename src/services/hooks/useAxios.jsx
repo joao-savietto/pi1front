@@ -28,8 +28,8 @@ export default function useAxios() {
       }
       console.log('refreshing token');
       console.log('refresh token is', refresh_token);
-      const { data } = await baseInstance.post("api/token/refresh?token=" + refresh_token);
-      dispatch(setTokens({ accessToken: data.access_token, refreshToken: refresh_token }));
+      const { data } = await baseInstance.post("api/token/refresh/", { refresh: refresh_token });
+      dispatch(setTokens({ accessToken: data.access, refreshToken: refresh_token }));
       return data.access_token;
     };
 
