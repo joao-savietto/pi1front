@@ -8,6 +8,8 @@ import { Outlet } from "react-router-dom";
 
 import ClassroomList from './pages/classroom-list.jsx';
 import StudentList from './pages/student-list.jsx';
+import OccurrenceList from './pages/occurrence-list.jsx';
+import OccurrenceForm from './pages/occurrence-form.jsx';
 
 
 import {
@@ -40,7 +42,19 @@ const router = createBrowserRouter([
           {
             path: "prof/students",
             element: <StudentList />,
-          },          
+          },     
+          {
+            path: "prof/students/occurrences",
+            element: <OccurrenceList />,
+          },      
+          {
+            path: "prof/students/occurrences/form",
+            element: <OccurrenceForm edit={true} />,
+          },    
+          {
+            path: "prof/students/occurrences/new",
+            element: <OccurrenceForm edit={false} />,
+          },                              
         ],             
       },
     ],
