@@ -3,27 +3,27 @@ import { useNavigate } from 'react-router-dom';
 import CustomCard from '../components/custom-card';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { setSelectedClassroom } from '../services/slices/classroomSlice';
 import { useDispatch } from 'react-redux';
+import { setSelectedStudent } from '../services/slices/studentSlice';
 
 import useAxios from '../services/hooks/useAxios';
 
-export default function ClassroomList() {
+export default function ParentChildrenList() {
 
-  const [classrooms, setClassrooms] = useState([]);
+  const [children, setChildren] = useState([]);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const axios = useAxios();
 
   useEffect(() => {
-    if (classrooms.length > 0) {
+    if (children.length > 0) {
       return
     }
-    axios.get('/api/classrooms').then(res => {
+    axios.get('/api/users/children').then(res => {
       if (res.status === 200) {
         if (res.data?.length > 0) {
-          setClassrooms(res.data);
+          setChildren(res.data);
           console.log(res.data);
         }
         else {
@@ -33,22 +33,22 @@ export default function ClassroomList() {
     }).catch(err => {
       console.log('Error');
     })
-  }, [axios, classrooms]);
+  }, [axios, children]);
 
 
 
   return (
     <div className="d-flex flex-column">
-      <p className="fs-4 fw-medium">Suas salas de aula</p>
-      {classrooms.length > 0 ? (
-        classrooms.map((classroom) => (
+      <p className="fs-4 fw-medium">Filhos(as)</p>
+      {children.length > 0 ? (
+        children.map((c) => (
           <CustomCard
-            key={classroom.id}
-            text={classroom.name}
-            subtext={""}
+            key={c.id}
+            text={c.nome}
+            subtext={``}       
             buttonClick={() => {
-              dispatch(setSelectedClassroom(classroom));
-              navigate('students');
+              dispatch(setSelectedStudent(c));
+              navigate('occurrences');
             }}
             buttonTitle={"Acessar"}
           />

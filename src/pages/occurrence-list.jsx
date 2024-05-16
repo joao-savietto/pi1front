@@ -12,7 +12,7 @@ import { occurrence_descriptions } from '../services/occurrence-type';
 import { convertUTCStringToLocalDate } from '../services/dates';
 import { setSelectedOccurrence } from '../services/slices/occurrenceSlice';
 
-export default function OccurrenceList() {
+export default function OccurrenceList({parentMode}) {
 
   const [occurrences, setOccurrences] = useState([]);
   const selectedStudent = useSelector((state) => state.student)
@@ -41,7 +41,7 @@ export default function OccurrenceList() {
     })
   }, [axios, occurrences, selectedStudent]);
 
-
+  console.log("PARENT", parentMode)
 
   return (
     <div className='d-flex flex-column'>
@@ -49,8 +49,11 @@ export default function OccurrenceList() {
       {occurrences.map(occurrence => (
         <CustomCard
           key={occurrence.id}
+          buttonHidden={true}
           text={ occurrence_descriptions[occurrence.occurrence_type]}
-          subtext={convertUTCStringToLocalDate(occurrence.created_at)}
+          subtext={
+            convertUTCStringToLocalDate(occurrence.created_at) + ` - ${parentMode === false ? "" : occurrence.description}`
+          }
           buttonClick={() => { 
             dispath(setSelectedOccurrence(occurrence));
             navigate('form')

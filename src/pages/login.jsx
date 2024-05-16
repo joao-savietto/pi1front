@@ -14,7 +14,6 @@ export default function Login() {
 
     const accessToken = useSelector(state => state.auth.accessToken);
     const refreshToken = useSelector(state => state.auth.refreshToken);
-    const userProfile = useSelector(state => state.profile);
     const axios = useAxios();
     const navigate = useNavigate();
 
@@ -22,11 +21,11 @@ export default function Login() {
         if (accessToken && refreshToken) {
             axios.get('/api/users/me').then(res => {
                 console.log(res)
-                dispatch(setProfile(res.data))
+                dispatch(setProfile(res.data))                
                 if (res.data.is_professor === true){
                     navigate('/home/prof');
-                } else {
-                    navigate('/home/prof');
+                } else if (res.data.is_responsavel === true) {
+                    navigate('/home/parent');
                 }
             }).catch(err => {
                 console.log(err)

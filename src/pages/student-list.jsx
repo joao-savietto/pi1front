@@ -41,7 +41,7 @@ export default function StudentList() {
   return (
     <div className='d-flex flex-column'>
       <p className='fs-4 fw-medium'>Alunos da sala</p>
-      {classroom?.students && (
+      {(classroom?.students || []).length > 0 ? (
         <Table hover bordered responsive="md" striped className=' w-75 mx-auto'>
           <thead>
             <tr>
@@ -84,6 +84,11 @@ export default function StudentList() {
             </tbody>
           ))}
         </Table>
+      ):(
+        <p className='fs-5 fw-light text-center'>
+          Nenhum aluno cadastrado
+
+        </p>
       )}
 
     </div>

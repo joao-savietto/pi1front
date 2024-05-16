@@ -10,6 +10,7 @@ import ClassroomList from './pages/classroom-list.jsx';
 import StudentList from './pages/student-list.jsx';
 import OccurrenceList from './pages/occurrence-list.jsx';
 import OccurrenceForm from './pages/occurrence-form.jsx';
+import ParentChildrenList from './pages/parent-chuldren-list.jsx';
 
 
 import {
@@ -54,7 +55,15 @@ const router = createBrowserRouter([
           {
             path: "prof/students/occurrences/new",
             element: <OccurrenceForm edit={false} />,
-          },                              
+          },   
+          {
+            path: "parent",
+            element: <ParentChildrenList />,
+          },               
+          {
+            path: "parent/occurrences",
+            element: <OccurrenceList parentMode={true} />,
+          },                                  
         ],             
       },
     ],
