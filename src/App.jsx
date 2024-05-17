@@ -12,12 +12,14 @@ import OccurrenceList from './pages/occurrence-list.jsx';
 import OccurrenceForm from './pages/occurrence-form.jsx';
 import ParentChildrenList from './pages/parent-chuldren-list.jsx';
 import ClassroomForm from './pages/classroom-form.jsx';
+import StudentForm from './pages/admin-student-form.jsx';
 
 
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import AdminStudentList from './pages/admin-student-list.jsx';
 
 const router = createBrowserRouter([
   {
@@ -83,8 +85,16 @@ const router = createBrowserRouter([
           },
           {
             path: "admin/students",
-            element: <Root />,
-          }                                      
+            element: <AdminStudentList />,
+          },                      
+          {
+            path: "admin/students/new",
+            element: <StudentForm />,
+          },
+          {
+            path: "admin/students/edit",
+            element: <StudentForm edit={true} />,
+          }                                          
         ],             
       },
     ],

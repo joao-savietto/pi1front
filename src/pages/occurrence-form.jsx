@@ -64,7 +64,7 @@ export default function OccurrenceForm({ edit }) {
             defaultValue={edit === true ? selectedOccurrence?.value.description : ""}
           />
         </Form.Group>
-        <Form.Group controlId="exampleFormControlSelect1">
+        <Form.Group controlId="selectOcurrence">
           <Form.Label>Tipo de ocorrência</Form.Label>
           <Form.Select
             aria-label="Select"

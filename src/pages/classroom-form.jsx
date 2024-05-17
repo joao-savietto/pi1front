@@ -81,7 +81,7 @@ export default function ClassroomForm({ edit }) {
                         required
                     />
                 </Form.Group>
-                <Form.Group controlId="exampleFormControlSelect1">
+                <Form.Group controlId="selectedTeachers">
                     <Form.Label className='mt-3 mb-3' >Professores da sala:</Form.Label>
                     <Container fluid>
                         <Row>

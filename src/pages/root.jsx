@@ -55,13 +55,13 @@ export default function Root() {
             </Link>
           }          
           {userProfile.profile.is_superuser === true &&
-            <Link to={'/home/admin/parents'} className="text-white fs-6 fw-bold mb-2 text-decoration-none">
+            <Link to={'/home/admin/students'} className="text-white fs-6 fw-bold mb-2 text-decoration-none">
               <Mortarboard className="me-1" />
               Alunos
             </Link>
           }   
           {userProfile.profile.is_superuser === true &&
-            <Link to={'/home/admin/students'} className="text-white fs-6 fw-bold mb-2 text-decoration-none">
+            <Link to={'/home/admin/parents'} className="text-white fs-6 fw-bold mb-2 text-decoration-none">
               <PersonStanding className="me-1" />
               Pais e responsáveis
             </Link>
