@@ -63,7 +63,11 @@ export default function ClassroomList({ admin }) {
             subtext={""}
             buttonClick={() => {
               dispatch(setSelectedClassroom(classroom));
-              navigate('form/edit');
+              if(admin === true){
+                navigate('form/edit');
+              } else {
+                navigate('students');
+              }
             }}
             buttonTitle={admin === true ? "Gerenciar" : "Acessar"}
           />

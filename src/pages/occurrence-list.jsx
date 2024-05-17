@@ -49,7 +49,7 @@ export default function OccurrenceList({parentMode}) {
       {occurrences.map(occurrence => (
         <CustomCard
           key={occurrence.id}
-          buttonHidden={true}
+          buttonHidden={false}
           text={ occurrence_descriptions[occurrence.occurrence_type]}
           subtext={
             convertUTCStringToLocalDate(occurrence.created_at) + ` - ${parentMode === false ? "" : occurrence.description}`

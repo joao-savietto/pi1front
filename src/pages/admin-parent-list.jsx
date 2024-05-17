@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import useAxios from '../services/hooks/useAxios';
 import { setSelectedUser } from '../services/slices/userSlice';
 
-export default function AdminStudentList() {
+export default function AdminParentList() {
   const [students, setStudents] = useState(undefined);
   const axios = useAxios();
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ export default function AdminStudentList() {
     if (students !== undefined) {
       return;
     }
-    axios.get('/api/users/students')
+    axios.get('/api/users/parents')
       .then((res) => {
         if (res.status === 200) {
           if (res.data) {
@@ -47,14 +47,14 @@ export default function AdminStudentList() {
   return (
     <div className="d-flex flex-column">
       <div className='d-flex justify-content-between align-items-center '>
-        <p className="fs-4 fw-medium">Gerenciar alunos</p>
+        <p className="fs-4 fw-medium">Gerenciar responsávels</p>
         <Button
           className=' float-end w-auto h-auto'
           onClick={() => {
             navigate('new');
           }}
         >
-          Adicionar aluno
+          Adicionar responsável
         </Button>
       </div>
 
@@ -62,7 +62,7 @@ export default function AdminStudentList() {
         type="search"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        placeholder="Procurar por nome do aluno"
+        placeholder="Procurar por nome do responsável"
         className="form-control w-50 text-center align-self-center mb-4 my-3"
       />
       {filteredStudents?.length > 0 ? (
@@ -72,7 +72,6 @@ export default function AdminStudentList() {
           <thead>
             <tr>
               <th className="text-center">Nome</th>
-              <th className="text-center">Classe</th>
               <th className="text-center"></th>
             </tr>
           </thead>
@@ -80,11 +79,6 @@ export default function AdminStudentList() {
             <tbody key={index}>
               <tr>
                 <td className="text-center">{student.nome}</td>
-                <td className="text-center">
-                  {(student.classroom || []).length > 0
-                    ? student.classroom[0].name
-                    : ''}
-                </td>
                 <td className="col-2 text-center">
                   <Button
                     onClick={() => {
@@ -102,7 +96,7 @@ export default function AdminStudentList() {
         </Table>
       ) : (
         <p className="fs-5 fw-light text-center">
-          Nenhum aluno
+          Nenhum responsável
         </p>
       )}
     </div>

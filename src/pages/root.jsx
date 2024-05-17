@@ -63,7 +63,7 @@ export default function Root() {
           {userProfile.profile.is_superuser === true &&
             <Link to={'/home/admin/parents'} className="text-white fs-6 fw-bold mb-2 text-decoration-none">
               <PersonStanding className="me-1" />
-              Pais e responsáveis
+              Responsáveis
             </Link>
           }                     
 

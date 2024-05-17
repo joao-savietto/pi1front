@@ -4,7 +4,7 @@ import CustomCard from '../components/custom-card';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { setSelectedStudent } from '../services/slices/studentSlice';
+import { setSelectedUser } from '../services/slices/userSlice';
 
 import useAxios from '../services/hooks/useAxios';
 
@@ -47,7 +47,7 @@ export default function ParentChildrenList() {
             text={c.nome}
             subtext={``}       
             buttonClick={() => {
-              dispatch(setSelectedStudent(c));
+              dispatch(setSelectedUser(c));
               navigate('occurrences');
             }}
             buttonTitle={"Acessar"}

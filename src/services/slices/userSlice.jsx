@@ -1,21 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const selectedStudentSlice = createSlice({
+export const selectedUserSlice = createSlice({
   name: 'selectedStudent',
   initialState: {
     value: localStorage.getItem('selectedStudent') ? JSON.parse(localStorage.getItem('selectedStudent')) : null,
   },
   reducers: {
-    setSelectedStudent(state, action) {
+    setSelectedUser(state, action) {
       state.value = action.payload;
       localStorage.setItem('selectedStudent', JSON.stringify(action.payload))
     },
-    clearSelectedStudent(state) {
+    clearSelectedUser(state) {
       state.value = null;
       localStorage.removeItem('selectedStudent');
     }
   },
 });
 
-export const { setSelectedStudent } = selectedStudentSlice.actions;
-export default selectedStudentSlice.reducer;
+export const { setSelectedUser } = selectedUserSlice.actions;
+export default selectedUserSlice.reducer;

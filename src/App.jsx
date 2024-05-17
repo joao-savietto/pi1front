@@ -13,6 +13,8 @@ import OccurrenceForm from './pages/occurrence-form.jsx';
 import ParentChildrenList from './pages/parent-chuldren-list.jsx';
 import ClassroomForm from './pages/classroom-form.jsx';
 import StudentForm from './pages/admin-student-form.jsx';
+import AdminParentList from './pages/admin-parent-list.jsx';
+import ParentForm from './pages/admin.parent-form.jsx';
 
 
 import {
@@ -81,8 +83,16 @@ const router = createBrowserRouter([
           },                 
           {
             path: "admin/parents",
-            element: <Root />
+            element: <AdminParentList />
           },
+          {
+            path: "admin/parents/new",
+            element: <ParentForm />
+          },    
+          {
+            path: "admin/parents/edit",
+            element: <ParentForm edit={true} />
+          },                
           {
             path: "admin/students",
             element: <AdminStudentList />,

@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { useState } from'react';
 import useAxios from '../services/hooks/useAxios';
 import { useDispatch } from 'react-redux';
-import { setSelectedStudent } from '../services/slices/studentSlice';
+import { setSelectedUser } from '../services/slices/userSlice';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
@@ -62,7 +62,7 @@ export default function StudentList() {
                 <td className=' w-50 text-center '>
                   <Button 
                     onClick={() => {
-                      dispatch(setSelectedStudent(student)); 
+                      dispatch(setSelectedUser(student)); 
                       navigate('occurrences')
                     }}
                     variant='outline-primary'
@@ -72,7 +72,7 @@ export default function StudentList() {
                   </Button>
                   <Button 
                     onClick={() => {
-                      dispatch(setSelectedStudent(student));      
+                      dispatch(setSelectedUser(student));      
                       navigate('occurrences/new')                
                     }}                  
                     className=''
