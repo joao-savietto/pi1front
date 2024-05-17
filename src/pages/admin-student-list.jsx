@@ -10,7 +10,7 @@ import { setSelectedStudent } from '../services/slices/studentSlice';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
-export default function StudentList() {
+export default function AdminStudentList() {
   const selectedClassroom = useSelector(state => state.selectedClassroom);
   const [classroom, setClassroom] = useState(undefined);
   const axios = useAxios();

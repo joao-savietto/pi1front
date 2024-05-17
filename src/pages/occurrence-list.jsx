@@ -30,7 +30,7 @@ export default function OccurrenceList({parentMode}) {
       if (res.status === 200) {
         if (res.data?.length > 0) {
           setOccurrences(res.data);
-          console.log(res.data);
+          //console.log(res.data);
         }
         else {
           console.log('No data');

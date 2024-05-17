@@ -37,13 +37,13 @@ export default function OccurrenceForm({ edit }) {
     if (edit) {
       console.log(data)
       axios.patch(`/api/occurrences/${selectedOccurrence?.value.id}/`, data)
-      .then(res => {
-        console.log(res)
-        navigate('/home/prof/students/occurrences')
-      }).catch(err => console.log(err))        
+        .then(res => {
+          console.log(res)
+          navigate('/home/prof/students/occurrences')
+        }).catch(err => console.log(err))
     } else {
       axios.post('/api/occurrences/', data)
-       .then(res => {
+        .then(res => {
           console.log(res)
           navigate('/home/prof/students/occurrences')
         }).catch(err => console.log(err))
@@ -61,16 +61,16 @@ export default function OccurrenceForm({ edit }) {
             rows={5}
             type="text"
             placeholder="Descrição do ocorrido"
-            defaultValue={edit === true? selectedOccurrence?.value.description : ""}
+            defaultValue={edit === true ? selectedOccurrence?.value.description : ""}
           />
         </Form.Group>
         <Form.Group controlId="exampleFormControlSelect1">
           <Form.Label>Tipo de ocorrência</Form.Label>
-          <Form.Select 
-            aria-label="Select" 
+          <Form.Select
+            aria-label="Select"
             placeholder="Tipo de ocorrência"
-            defaultValue={edit === true? selectedOccurrence?.value.occurrence_type : ""}
-            >
+            defaultValue={edit === true ? selectedOccurrence?.value.occurrence_type : ""}
+          >
             {Object.keys(occurrence_descriptions).map((key) => (
               <option value={key} key={key}>
                 {occurrence_descriptions[key]}
@@ -78,13 +78,15 @@ export default function OccurrenceForm({ edit }) {
             ))}
           </Form.Select>
         </Form.Group>
-        <Button className='float-sm-end mt-3' variant="danger" type="submit">
-          Excluir
-        </Button>          
+        {edit === true && (
+          <Button className='float-sm-end mt-3' variant="danger" type="submit">
+            Excluir
+          </Button>
+        )}
         <Button className='float-sm-end mt-3 me-2' variant="primary" type="submit">
           Salvar
         </Button>
-      
+
       </Form>
 
     </div>

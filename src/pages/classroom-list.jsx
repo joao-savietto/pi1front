@@ -7,8 +7,9 @@ import { setSelectedClassroom } from '../services/slices/classroomSlice';
 import { useDispatch } from 'react-redux';
 
 import useAxios from '../services/hooks/useAxios';
+import { Button } from 'react-bootstrap';
 
-export default function ClassroomList() {
+export default function ClassroomList({ admin }) {
 
   const [classrooms, setClassrooms] = useState([]);
 
@@ -24,7 +25,6 @@ export default function ClassroomList() {
       if (res.status === 200) {
         if (res.data?.length > 0) {
           setClassrooms(res.data);
-          console.log(res.data);
         }
         else {
           console.log('No data');
@@ -39,7 +39,22 @@ export default function ClassroomList() {
 
   return (
     <div className="d-flex flex-column">
-      <p className="fs-4 fw-medium">Suas salas de aula</p>
+      <div className='d-flex justify-content-between align-items-center'>
+        <p className="fs-4 fw-medium">
+          {admin === true ? "Gerenciar salas de aula" : "Suas salas de aula"}
+        </p>
+        {admin === true && (
+          <Button
+            onClick={() => {
+              navigate('form/new');
+            }}
+          >
+            Adicionar sala
+          </Button>
+        )}
+
+      </div>
+
       {classrooms.length > 0 ? (
         classrooms.map((classroom) => (
           <CustomCard
@@ -48,9 +63,9 @@ export default function ClassroomList() {
             subtext={""}
             buttonClick={() => {
               dispatch(setSelectedClassroom(classroom));
-              navigate('students');
+              navigate('form/edit');
             }}
-            buttonTitle={"Acessar"}
+            buttonTitle={admin === true ? "Gerenciar" : "Acessar"}
           />
         ))
       ) : (

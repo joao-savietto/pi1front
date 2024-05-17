@@ -24,7 +24,7 @@ export default function ParentChildrenList() {
       if (res.status === 200) {
         if (res.data?.length > 0) {
           setChildren(res.data);
-          console.log(res.data);
+          //console.log(res.data);
         }
         else {
           console.log('No data');

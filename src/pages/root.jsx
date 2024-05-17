@@ -1,7 +1,7 @@
 import { Outlet, Link } from "react-router-dom";
 import books from "../assets/books.jpg"
 import { Mortarboard } from "react-bootstrap-icons";
-import { Person, PersonStanding } from "react-bootstrap-icons";
+import { Person, PersonStanding, Building } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { setTokens, clearTokens } from "../services/slices/authSlice";
 import { useEffect } from "react";
@@ -48,6 +48,25 @@ export default function Root() {
               Filhos(as)
             </Link>
           }
+          {userProfile.profile.is_superuser === true &&
+            <Link to={'/home/admin/classrooms'} className="text-white fs-6 fw-bold mb-2 text-decoration-none">
+              <Building className="me-1" />
+              Salas de aula
+            </Link>
+          }          
+          {userProfile.profile.is_superuser === true &&
+            <Link to={'/home/admin/parents'} className="text-white fs-6 fw-bold mb-2 text-decoration-none">
+              <Mortarboard className="me-1" />
+              Alunos
+            </Link>
+          }   
+          {userProfile.profile.is_superuser === true &&
+            <Link to={'/home/admin/students'} className="text-white fs-6 fw-bold mb-2 text-decoration-none">
+              <PersonStanding className="me-1" />
+              Pais e responsáveis
+            </Link>
+          }                     
+
         </div>
         <div className="d-flex align-bottom w-100 h-100 flex-column-reverse ms-3">
           <div
@@ -80,7 +99,7 @@ export default function Root() {
             }
           </p>
         </div>
-        <div className=" position-relative w-auto ms-3">
+        <div className=" position-relative w-auto ms-3 me-3">
           <Outlet />
         </div>
       </div>

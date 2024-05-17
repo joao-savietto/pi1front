@@ -26,6 +26,8 @@ export default function Login() {
                     navigate('/home/prof');
                 } else if (res.data.is_responsavel === true) {
                     navigate('/home/parent');
+                } else if(res.data.is_superuser === true){
+                    navigate('/home/admin/classrooms')
                 }
             }).catch(err => {
                 console.log(err)
