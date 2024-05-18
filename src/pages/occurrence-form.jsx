@@ -8,7 +8,7 @@ import { Form, Button } from 'react-bootstrap';
 import useAxios from '../services/hooks/useAxios';
 import { occurrence_descriptions } from '../services/occurrence-type';
 
-export default function OccurrenceForm({ edit }) {
+export default function OccurrenceForm({ edit = false }) {
 
   const selectedStudent = useSelector((state) => state.student)
   const selectedOccurrence = useSelector((state) => state.occurrence);

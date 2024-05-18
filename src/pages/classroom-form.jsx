@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import { Row, Col, Container } from 'react-bootstrap';
 import { useState } from 'react';
 
-export default function ClassroomForm({ edit }) {
+export default function ClassroomForm({ edit = false }) {
 
     const selectedClassroom = useSelector((state) => state.selectedClassroom);
     const [teachers, setTeachers] = useState(undefined);
@@ -94,9 +94,10 @@ export default function ClassroomForm({ edit }) {
                                             type='checkbox'
                                             id={teacher?.id}
                                             
-                                            checked={edit === true ? selectedTeachers?.includes(teacher.id) : false}
+                                            checked={edit === true ? selectedTeachers?.includes(teacher.id) : selectedTeachers.includes(teacher?.id)}
                                             onChange={(e) => {
                                                 console.log("Selected")
+                                                console.log(selectedTeachers)
                                                 if (!selectedTeachers.includes(teacher?.id)) {
                                                     setSelectedTeachers([...selectedTeachers, teacher?.id])
                                                 } else {

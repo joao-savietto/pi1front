@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
 import useAxios from '../services/hooks/useAxios';
 
-export default function StudentForm({ edit }) {
+export default function StudentForm({ edit = false }) {
     const selectedStudent = useSelector((state) => state.student);
     const selectedOccurrence = useSelector((state) => state.occurrence);
     const [availableClassrooms, setAvailableClassrooms] = useState(undefined);
@@ -89,7 +89,7 @@ export default function StudentForm({ edit }) {
     return (
         <div className='d-flex flex-column'>
             <p className='fs-4 fw-medium'>
-                {edit === true ? `Formulário de Ocorrência para: ${selectedStudent?.value.nome}` : "Cadastrar aluno"}
+                {edit === true ? `Editando cadastro de: ${selectedStudent?.value.nome}` : "Cadastrar aluno"}
             </p>
             <Form className='w-50 ms-3 me-3 pt-5 pb-5 ps-3 pe-3 rounded-4' onSubmit={handleSubmit}>
                 <Form.Group controlId="formStudentName">
@@ -123,7 +123,7 @@ export default function StudentForm({ edit }) {
                     <Form.Label>Sala de aula</Form.Label>
                     <Form.Select
                         aria-label="Select"
-                        defaultValue={edit === true ? String(selectedStudent?.value.classroom[0].id) : ""}
+                        defaultValue={edit === true ? String(selectedStudent?.value.classroom[0]?.id) : ""}
                     >
                         {availableClassrooms.map(classroom => (
                             <option key={classroom.id} value={String(classroom.id)}>{classroom.name}</option>

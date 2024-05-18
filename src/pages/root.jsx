@@ -1,7 +1,7 @@
 import { Outlet, Link } from "react-router-dom";
 import books from "../assets/books.jpg"
 import { Mortarboard } from "react-bootstrap-icons";
-import { Person, PersonStanding, Building } from "react-bootstrap-icons";
+import { Person, PersonStanding, Building, Journal } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { setTokens, clearTokens } from "../services/slices/authSlice";
 import { useEffect } from "react";
@@ -53,7 +53,13 @@ export default function Root() {
               <Building className="me-1" />
               Salas de aula
             </Link>
-          }          
+          }       
+          {userProfile.profile.is_superuser === true &&
+            <Link to={'/home/admin/teachers'} className="text-white fs-6 fw-bold mb-2 text-decoration-none">
+              <Journal className="me-1" />
+              Professores
+            </Link>
+          }              
           {userProfile.profile.is_superuser === true &&
             <Link to={'/home/admin/students'} className="text-white fs-6 fw-bold mb-2 text-decoration-none">
               <Mortarboard className="me-1" />
@@ -94,7 +100,7 @@ export default function Root() {
             {userProfile.profile.is_responsavel === true &&
               "Módulo dos pais"
             }
-            {userProfile.profile.is_admin === true &&
+            {userProfile.profile.is_superuser === true &&
                "Módulo do administrador"
             }
           </p>

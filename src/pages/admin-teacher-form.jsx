@@ -4,39 +4,40 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
 import useAxios from '../services/hooks/useAxios';
 
-export default function ParentForm({ edit = false }) {
-    const selectedParent = useSelector((state) => state.student);
+export default function TeacherForm({ edit = false}) {
+    const selectedTeacher = useSelector((state) => state.student);
 
     const navigate = useNavigate();
     const axios = useAxios();
 
     useEffect(() => {
-        if (!selectedParent) {
+        if (!selectedTeacher) {
             return;
         }
-        console.log(selectedParent)
-    }, [axios, selectedParent]);
+        console.log(selectedTeacher)
+        console.log("edit?", edit)
+    }, [axios, selectedTeacher]);
 
     function handleSubmit(e) {
         e.preventDefault();
         var data = {
             nome: e.target[0].value,
             email: e.target[1].value,
-            is_professor: false,
-            is_responsavel: true,
+            is_professor: true,
+            is_responsavel: false,
             is_aluno: false,
             password: 'usuario@123'
         };
         if (edit === false) {
             axios.post('/api/users/', data).then((u) => {
-                navigate('/home/admin/parents');
+                navigate('/home/admin/teachers');
             }).catch((err) => {
                 alert('Erro ao cadastrar usuário. Verifique se já existe um usuário com esse e-mail');
                 console.error(err);
             });
         } else {
-            axios.patch(`/api/users/${selectedParent.value.id}/`, data).then((u) => {
-                navigate('/home/admin/parents');
+            axios.patch(`/api/users/${selectedTeacher.value.id}/`, data).then((u) => {
+                navigate('/home/admin/teachers');
             }).catch((err) => {
                 alert('Erro ao atualizar usuário. Verifique se já existe um usuário com esse e-mail');
                 console.error(err);
@@ -47,26 +48,26 @@ export default function ParentForm({ edit = false }) {
     return (
         <div className='d-flex flex-column'>
             <p className='fs-4 fw-medium'>
-                {edit === true ? `Editando cadastro de: ${selectedParent?.value.nome}` : "Cadastrar responsável"}
+                {edit === true ? `Editando cadastro de: ${selectedTeacher?.value.nome}` : "Cadastrar professor"}
             </p>
             <Form className='formSize ms-3 me-3 pt-5 pb-5 ps-3 pe-3 rounded-4' onSubmit={handleSubmit}>
                 <Form.Group controlId="formStudentName">
-                    <Form.Label>Nome do responsável</Form.Label>
+                    <Form.Label>Nome do professor</Form.Label>
                     <Form.Control
                         type="text"
                         placeholder="Fulano da Silva"
-                        defaultValue={edit === true ? selectedParent?.value.nome : ""}
+                        defaultValue={edit === true ? selectedTeacher?.value.nome : ""}
                         required
                     />
                 </Form.Group>
                 <Form.Group controlId="formStudentEmail">
                 </Form.Group>
                 <Form.Group controlId="formParentEmail">
-                    <Form.Label>E-mail do responsável</Form.Label>
+                    <Form.Label>E-mail do professor</Form.Label>
                     <Form.Control
                         type="email"
-                        placeholder="responsavel@email.com"
-                        defaultValue={edit === true ? selectedParent?.value.email : ""}
+                        placeholder="professor@email.com"
+                        defaultValue={edit === true ? selectedTeacher?.value.email : ""}
                         required
                     />
                 </Form.Group>

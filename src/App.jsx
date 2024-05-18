@@ -15,6 +15,8 @@ import ClassroomForm from './pages/classroom-form.jsx';
 import StudentForm from './pages/admin-student-form.jsx';
 import AdminParentList from './pages/admin-parent-list.jsx';
 import ParentForm from './pages/admin.parent-form.jsx';
+import AdminTeacherList from './pages/admin-teacher-list.jsx';
+import TeacherForm from './pages/admin-teacher-form.jsx';
 
 
 import {
@@ -104,7 +106,19 @@ const router = createBrowserRouter([
           {
             path: "admin/students/edit",
             element: <StudentForm edit={true} />,
-          }                                          
+          },                     
+          {
+            path: "admin/teachers",
+            element: <AdminTeacherList />,
+          },                   
+          {
+            path: "admin/teachers/new",
+            element: <TeacherForm />,
+          },    
+          {
+            path: "admin/teachers/edit",
+            element: <TeacherForm edit={true} />,
+          },                    
         ],             
       },
     ],

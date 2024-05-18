@@ -20,18 +20,20 @@ export default function Login() {
     useEffect(() => {
         if (accessToken && refreshToken) {
             axios.get('/api/users/me').then(res => {
-                console.log(res)
-                dispatch(setProfile(res.data))                
-                if (res.data.is_professor === true){
+
+                dispatch(setProfile(res.data))
+                if (res.data.is_professor === true) {
                     navigate('/home/prof');
                 } else if (res.data.is_responsavel === true) {
                     navigate('/home/parent');
-                } else if(res.data.is_superuser === true){
+                } else if (res.data.is_superuser === true) {
                     navigate('/home/admin/classrooms')
                 }
+
             }).catch(err => {
                 console.log(err)
-            })                        
+                alert("Falha ao logar. Tente novamente mais tarde")
+            })
         }
     }, [accessToken, refreshToken]);
 
@@ -48,7 +50,11 @@ export default function Login() {
                 refreshToken: res.data['refresh']
             }))
         }).catch(err => {
-            console.log(err)
+            const code = err.response.status
+            if (code === 400)
+                alert("Usuário ou senha inválidos")
+            else
+                alert("Falha ao logar. Tente novamente mais tarde")
         })
         console.log(data)
     }

@@ -12,10 +12,12 @@ import { occurrence_descriptions } from '../services/occurrence-type';
 import { convertUTCStringToLocalDate } from '../services/dates';
 import { setSelectedOccurrence } from '../services/slices/occurrenceSlice';
 
-export default function OccurrenceList({parentMode}) {
+export default function OccurrenceList({ parentMode }) {
 
   const [occurrences, setOccurrences] = useState([]);
   const selectedStudent = useSelector((state) => state.student)
+  const userProfile = useSelector((state) => state.profile);
+
 
   const navigate = useNavigate();
   const dispath = useDispatch();
@@ -26,7 +28,7 @@ export default function OccurrenceList({parentMode}) {
     if (occurrences.length > 0 || !selectedStudent) {
       return
     }
-    axios.get('/api/occurrences', {params: {'student': selectedStudent.value.id}}).then(res => {
+    axios.get('/api/occurrences', { params: { 'student': selectedStudent.value.id } }).then(res => {
       if (res.status === 200) {
         if (res.data?.length > 0) {
           setOccurrences(res.data);
@@ -41,26 +43,30 @@ export default function OccurrenceList({parentMode}) {
     })
   }, [axios, occurrences, selectedStudent]);
 
-  console.log("PARENT", parentMode)
-
   return (
     <div className='d-flex flex-column'>
       <p className='fs-4 fw-medium'>{"Ocorrências de " + selectedStudent.value.nome}</p>
-      {occurrences.map(occurrence => (
-        <CustomCard
-          key={occurrence.id}
-          buttonHidden={false}
-          text={ occurrence_descriptions[occurrence.occurrence_type]}
-          subtext={
-            convertUTCStringToLocalDate(occurrence.created_at) + ` - ${parentMode === false ? "" : occurrence.description}`
-          }
-          buttonClick={() => { 
-            dispath(setSelectedOccurrence(occurrence));
-            navigate('form')
-          }}
-          buttonTitle={"Visualizar"}
-          />
-      ))}
+      {occurrences.length > 0 ? 
+        
+          occurrences.map(occurrence => (
+            <CustomCard
+              key={occurrence.id}
+              buttonHidden={userProfile?.profile.is_responsavel === true}
+              text={occurrence_descriptions[occurrence.occurrence_type]}
+              subtext={
+                convertUTCStringToLocalDate(occurrence.created_at) + ` - ${parentMode === false ? "" : occurrence.description}`
+              }
+              buttonClick={() => {
+                dispath(setSelectedOccurrence(occurrence));
+                navigate('form')
+              }}
+              buttonTitle={"Gerenciar"}
+            />
+          ))
+        
+        :
+        (<p className='fs-5 text-center fw-light'>Nenhuma ocorrencia para exibir</p>)
+      }
 
     </div>
   );
