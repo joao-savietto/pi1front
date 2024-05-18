@@ -1,5 +1,7 @@
 FROM node:20.12.2
 
+EXPOSE 5173
+
 # set working directory
 WORKDIR /app
 
@@ -15,4 +17,4 @@ RUN npm install
 COPY . ./
 
 # start app
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "dev", "--", "--host"]
