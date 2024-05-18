@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const baseURL = "http://localhost:8000/";
+export const baseURL = "https://pi1back.savietto.app/";
 
 export default axios.create({
     baseURL: baseURL,
