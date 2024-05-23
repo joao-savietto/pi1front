@@ -1,20 +1,15 @@
-FROM node:20.12.2
+FROM node:18.16.1-alpine as build
 
-EXPOSE 5173
-
-# set working directory
 WORKDIR /app
-
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
-
-# install app dependencies
-COPY package.json ./
-COPY package-lock.json ./
-RUN npm install
-
-# add app
+COPY package*.json ./
+RUN npm ci
 COPY . ./
+RUN npm run build
 
-# start app
-CMD ["npm", "run", "dev", "--", "--host"]
+# production env
+# production env
+FROM nginx:stable-alpine
+COPY  nginx.conf /etc/nginx/nginx.conf
+COPY --from=build /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
